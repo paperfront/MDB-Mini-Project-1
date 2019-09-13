@@ -103,6 +103,7 @@ class SecondViewController: UIViewController {
     
     func populateScreen() {
         
+        makeButtonsClickable()
         let index = Int.random(in: 0 ..< Constants.names.count)
         currentName = Constants.names[index]
         currentImage = Constants.getImageFor(name: currentName)
@@ -129,7 +130,10 @@ class SecondViewController: UIViewController {
     
     
     func checkIfCorrect(button: UIButton){
+        makeButtonsNonClickable()
         timer?.invalidate()
+        
+        
         if(button.titleLabel!.text == currentName){
             score += 1
             currentStreak += 1
@@ -187,6 +191,21 @@ class SecondViewController: UIViewController {
             print("unexpected segue identifier")
         }
     }
+    
+    func makeButtonsNonClickable(){
+        member0.isEnabled = false
+        member1.isEnabled = false
+        member2.isEnabled = false
+        member3.isEnabled = false
+    }
+    
+    func makeButtonsClickable(){
+        member0.isEnabled = true
+        member1.isEnabled = true
+        member2.isEnabled = true
+        member3.isEnabled = true
+    }
+    
     
     /*
     // MARK: - Navigation
